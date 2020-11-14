@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core'
+import green from '@material-ui/core/colors/green'
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -23,6 +24,23 @@ const useStyles = makeStyles((theme) => ({
   },
   error: {
     color: theme.palette.error.main,
+  },
+  successText: {
+    color: green[500],
+    marginTop: theme.spacing(1),
+  },
+  submitSuccess: {
+    backgroundColor: green[500],
+    '&:hover': {
+      backgroundColor: green[700],
+    },
+  },
+  submitProgress: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
   },
 }))
 

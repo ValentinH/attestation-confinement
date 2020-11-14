@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 function Home() {
   const classes = useStyles()
 
-  const onSubmit = (personalData: PersonalData, selectedReasons: string[]) => {
+  const onSubmit = async (personalData: PersonalData, selectedReasons: string[]) => {
     if (!personalData) {
       return
     }
@@ -58,7 +58,7 @@ function Home() {
         minute: '2-digit',
       }),
     }
-    downloadPdf(profile, selectedReasons)
+    await downloadPdf(profile, selectedReasons)
   }
 
   return (

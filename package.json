@@ -14,6 +14,7 @@
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/pickers": "^3.2.10",
+    "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
     "final-form": "^4.20.1",
     "mui-rff": "^2.5.6",
@@ -26,6 +27,7 @@
     "use-local-storage-state": "^6.0.0"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.11",
     "@types/node": "^14.14.6",
     "@types/react": "^16.9.55",
     "@typescript-eslint/eslint-plugin": "^4.7.0",

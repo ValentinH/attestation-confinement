@@ -1,5 +1,6 @@
-import { Button, IconButton } from '@material-ui/core'
+import { Button, CircularProgress, IconButton, Typography } from '@material-ui/core'
 import HelpIcon from '@material-ui/icons/Help'
+import classnames from 'classnames'
 import { Checkboxes } from 'mui-rff'
 import React from 'react'
 import { Form } from 'react-final-form'
@@ -47,7 +48,7 @@ const checkboxData: Array<{ label: string; value: Reason }> = [
 ]
 
 type Props = {
-  onSubmit: (personalData: PersonalData, selectedReasons: string[]) => void
+  onSubmit: (personalData: PersonalData, selectedReasons: string[]) => Promise<void>
 }
 
 function FormComponent({ onSubmit }: Props) {
@@ -57,12 +58,14 @@ function FormComponent({ onSubmit }: Props) {
     null
   )
   const [helpReason, setHelpReason] = React.useState<Reason | null>(null)
+  const [submitting, setIsSubmitting] = React.useState(false)
+  const [isSuccess, setSuccess] = React.useState(false)
 
   const onPersonalDataSubmit = (data: PersonalData) => {
     setPersonalData(data)
   }
 
-  const onFormSubmit = (values: FormData) => {
+  const onFormSubmit = async (values: FormData) => {
     if (!personalData) {
       return
     }
@@ -75,7 +78,15 @@ function FormComponent({ onSubmit }: Props) {
       return array
     }, [])
 
-    onSubmit(personalData, selectedReasons)
+    setIsSubmitting(true)
+    try {
+      await onSubmit(personalData, selectedReasons)
+      setSuccess(true)
+      setTimeout(() => setSuccess(false), 5000)
+    } catch (e) {
+      alert('quelque chose a mal tourné')
+    }
+    setIsSubmitting(false)
   }
 
   return (
@@ -124,12 +135,18 @@ function FormComponent({ onSubmit }: Props) {
                   variant="contained"
                   type="submit"
                   fullWidth
-                  disabled={isEmpty}
-                  className={classes.submit}
+                  disabled={isEmpty || submitting}
+                  className={classnames(classes.submit, isSuccess && classes.submitSuccess)}
                   size="large"
                 >
                   Créer l&apos;attestation
+                  {submitting && <CircularProgress size={24} className={classes.submitProgress} />}
                 </Button>
+                {isSuccess && (
+                  <Typography variant="subtitle1" align="center" className={classes.successText}>
+                    Votre attestation a été téléchargée
+                  </Typography>
+                )}
               </div>
             </form>
           )
