@@ -25,3 +25,14 @@ export type PdfData = PersonalData & {
 export type FormData = {
   reasons: string[]
 }
+
+export type Reason =
+  | 'achats'
+  | 'convocation'
+  | 'enfants'
+  | 'famille'
+  | 'handicap'
+  | 'missions'
+  | 'sport_animaux'
+  | 'sante'
+  | 'travail'

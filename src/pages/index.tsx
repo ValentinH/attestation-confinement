@@ -1,13 +1,10 @@
-import { Button, Container, makeStyles, Typography } from '@material-ui/core'
-import { Checkboxes, CheckboxData } from 'mui-rff'
+import { Container, Link, makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
-import { Form } from 'react-final-form'
-import useLocalStorageState from 'use-local-storage-state'
 
-import EditInfoDialog from '#src/components/EditInfoDialog'
+import Form from '#src/components/Form'
 import { downloadBlob } from '#src/pdf/blob-utils'
 import { generatePdf } from '#src/pdf/pdf-util'
-import { FormData, PdfData, PersonalData } from '#src/types'
+import { PdfData, PersonalData } from '#src/types'
 
 const reasons = {
   'ox-achats': 'achats',
@@ -41,48 +38,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     padding: theme.spacing(2),
   },
-  form: {
-    marginTop: theme.spacing(1),
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  buttons: {
-    marginTop: 'auto',
-  },
-  submit: {
-    marginTop: theme.spacing(2),
-  },
 }))
-
-const initialValues = {
-  reasons: [],
-}
-
-const checkboxData: CheckboxData[] = [
-  { label: 'Achats', value: 'achats' },
-  { label: 'Convocation judiciaire/administrative', value: 'convocation' },
-  { label: 'Enfants', value: 'enfants' },
-  { label: 'Famille', value: 'famille' },
-  { label: 'Handicap', value: 'handicap' },
-  { label: 'Missions', value: 'missions' },
-  { label: 'Promenade', value: 'sport_animaux' },
-  { label: 'Santé', value: 'sante' },
-  { label: 'Travail', value: 'travail' },
-]
 
 function Home() {
   const classes = useStyles()
-  const [personalData, setPersonalData] = useLocalStorageState<PersonalData | null>(
-    'info-perso',
-    null
-  )
 
-  const onPersonalDataSubmit = (data: PersonalData) => {
-    setPersonalData(data)
-  }
-
-  const onFormSubmit = (values: FormData) => {
+  const onSubmit = (personalData: PersonalData, selectedReasons: string[]) => {
     if (!personalData) {
       return
     }
@@ -97,62 +58,23 @@ function Home() {
         minute: '2-digit',
       }),
     }
-    downloadPdf(profile, values.reasons)
-  }
-
-  const validate = (values: FormData) => {
-    if (!values.reasons || values.reasons.length === 0) {
-      return { reasons: 'Vous avez oubliez la raison' }
-    }
-    return undefined
+    downloadPdf(profile, selectedReasons)
   }
 
   return (
-    <Container className={classes.root}>
-      <EditInfoDialog open={personalData === null} onSubmit={onPersonalDataSubmit} />
-      <Typography component="h1" variant="h5" gutterBottom>
+    <Container maxWidth="sm" className={classes.root}>
+      <Typography component="h1" variant="h5" gutterBottom align="center">
         Attestation de sortie
       </Typography>
-      <Typography component="h3" variant="body1" gutterBottom>
-        Bonjour {personalData?.firstname || ''}
+      <Form onSubmit={onSubmit} />
+      <Typography variant="caption" align="center">
+        Fait avec{' '}
+        <span role="img" aria-label="amour">
+          ❤️
+        </span>{' '}
+        &nbsp;par <Link href="https://valentin-hervieu.fr">Valentin</Link> - (
+        <Link href="https://github.com/ValentinH/attestation-confinement">code source</Link>)
       </Typography>
-      <Form
-        onSubmit={onFormSubmit}
-        initialValues={initialValues}
-        validate={validate}
-        render={({ handleSubmit }) => (
-          <form onSubmit={handleSubmit} noValidate className={classes.form}>
-            <Checkboxes
-              label="Quelle est la raison de votre sortie?"
-              name="reasons"
-              required
-              data={checkboxData}
-            />
-            <div className={classes.buttons}>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  const isSure = window.confirm('Êtes-vous sûr?')
-                  if (isSure) {
-                    setPersonalData(null)
-                  }
-                }}
-              >
-                Supprimer mes données
-              </Button>
-              <Button
-                color="primary"
-                variant="contained"
-                type="submit"
-                fullWidth
-                className={classes.submit}
-              >
-                Créer l&apos;attestation
-              </Button>
-            </div>
-          </form>
-        )}
-      />
     </Container>
   )
 }

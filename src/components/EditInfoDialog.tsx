@@ -104,6 +104,8 @@ const EditInfoDialog = ({ open, onSubmit }: Props) => {
                   name="birthday"
                   required
                   placeholder="jj/mm/yyy"
+                  openTo="year"
+                  initialFocusedDate="1990-01-01"
                   format="dd/MM/yyyy"
                   disableFuture
                 />
