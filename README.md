@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Cette application est basée sur le [générateur d'attestation officiel](https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020). J'ai simplement ajouté une interface plus sympathique.
+
+Les données saisies sont uniquement stockées sur votre appareil grâce au [localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage).
+
+C'est une application [Next.js](https://nextjs.org/) créée avec [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). La suite du Readme est en anglais.
 
 ## Getting Started
 
