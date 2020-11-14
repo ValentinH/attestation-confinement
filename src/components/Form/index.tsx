@@ -35,6 +35,7 @@ const labels: Record<Reason, string> = {
   travail: 'Travail',
 }
 
+// @ts-expect-error Come on
 const checkboxData: Array<{ label: string; value: Reason }> = [
   { label: labels.achats, value: 'achats' },
   { label: labels.convocation, value: 'convocation' },
@@ -45,7 +46,7 @@ const checkboxData: Array<{ label: string; value: Reason }> = [
   { label: labels.sport_animaux, value: 'sport_animaux' },
   { label: labels.sante, value: 'sante' },
   { label: labels.travail, value: 'travail' },
-]
+].sort((a, b) => a.label.localeCompare(b.label))
 
 type Props = {
   onSubmit: (personalData: PersonalData, selectedReasons: string[]) => Promise<void>
