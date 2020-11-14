@@ -126,6 +126,7 @@ function FormComponent({ onSubmit }: Props) {
                   fullWidth
                   disabled={isEmpty}
                   className={classes.submit}
+                  size="large"
                 >
                   Créer l&apos;attestation
                 </Button>

@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    '& > div': {
+      flex: 1,
+    },
   },
   buttons: {
     marginTop: theme.spacing(4),
