@@ -32,7 +32,7 @@ const labels: Record<Reason, string> = {
   missions: `Missions d'intérêt général`,
   sport_animaux: 'Promenade / Sport',
   sante: 'Santé',
-  travail: 'Travail',
+  travail: 'Travail / Études',
 }
 
 // @ts-expect-error Come on
