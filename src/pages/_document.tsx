@@ -9,6 +9,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <title>Attestation confinement</title>
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link
             rel="stylesheet"
