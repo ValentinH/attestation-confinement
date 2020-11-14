@@ -26,11 +26,11 @@ const initialValues: Record<Reason, boolean> = {
 const labels: Record<Reason, string> = {
   achats: 'Achats',
   convocation: 'Convocation judiciaire/administrative',
-  enfants: 'Enfants',
-  famille: 'Motif familial impérieux',
+  enfants: 'École',
+  famille: `Motif familial / garde d'enfants`,
   handicap: 'Situation de handicap',
   missions: `Missions d'intérêt général`,
-  sport_animaux: 'Promenade',
+  sport_animaux: 'Promenade / Sport',
   sante: 'Santé',
   travail: 'Travail',
 }
