@@ -45,7 +45,7 @@ const checkboxData: Array<{ label: string; value: Reason }> = [
   { label: labels.sport_animaux, value: 'sport_animaux' },
   { label: labels.sante, value: 'sante' },
   { label: labels.travail, value: 'travail' },
-]
+].sort((a, b) => a.label.localeCompare(b.value))
 
 type Props = {
   onSubmit: (personalData: PersonalData, selectedReasons: string[]) => Promise<void>
