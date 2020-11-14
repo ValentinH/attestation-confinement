@@ -72,7 +72,7 @@ const EditInfoDialog = ({ open, onSubmit }: Props) => {
           Vos données
         </Typography>
         <Typography variant="caption">
-          Ces données seront enregistrées sur votre appareil afin de ne pas avoir à les resaisir.
+          Ces données seront enregistrées sur votre appareil afin de ne pas avoir à les ressaisir.
         </Typography>
       </DialogTitle>
       <DialogContent>
