@@ -7,7 +7,7 @@ import { generatePdf } from '#src/pdf/pdf-util'
 import { PdfData, PersonalData } from '#src/types'
 
 const reasons = {
-  'ox-achats': 'achats',
+  'ox-achats_culturel_cultuel': 'achats_culturel_cultuel',
   'ox-convocation': 'convocation',
   'ox-enfants': 'enfants',
   'ox-famille': 'famille',

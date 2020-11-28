@@ -11,7 +11,7 @@ export type PersonalData = {
 export type PdfData = PersonalData & {
   datesortie: string
   heuresortie: string
-  'ox-achats': string
+  'ox-achats_culturel_cultuel': string
   'ox-convocation': string
   'ox-enfants': string
   'ox-famille': string
@@ -27,7 +27,7 @@ export type FormData = {
 }
 
 export type Reason =
-  | 'achats'
+  | 'achats_culturel_cultuel'
   | 'convocation'
   | 'enfants'
   | 'famille'

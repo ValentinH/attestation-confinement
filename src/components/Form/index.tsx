@@ -13,7 +13,7 @@ import HelpDialog from '../HelpDialog'
 import useStyles from './styles'
 
 const initialValues: Record<Reason, boolean> = {
-  achats: false,
+  achats_culturel_cultuel: false,
   convocation: false,
   enfants: false,
   famille: false,
@@ -24,7 +24,7 @@ const initialValues: Record<Reason, boolean> = {
   travail: false,
 }
 const labels: Record<Reason, string> = {
-  achats: 'Achats',
+  achats_culturel_cultuel: 'Achats / Culture / Culte',
   convocation: 'Convocation judiciaire/administrative',
   enfants: 'École',
   famille: `Motif familial / garde d'enfants`,
@@ -36,7 +36,7 @@ const labels: Record<Reason, string> = {
 }
 
 const rawData: Array<{ label: string; value: Reason }> = [
-  { label: labels.achats, value: 'achats' },
+  { label: labels.achats_culturel_cultuel, value: 'achats_culturel_cultuel' },
   { label: labels.convocation, value: 'convocation' },
   { label: labels.enfants, value: 'enfants' },
   { label: labels.famille, value: 'famille' },
